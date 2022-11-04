@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+import tkinter.font as font
 
 def rgbToHex(rgb):
     return '#'+'%02x%02x%02x' % rgb
@@ -37,7 +37,6 @@ class Display:
             relief =tk.FLAT,
             font= f"{style['font']} {style['size']}"
         )
-
         # configure tags
         w.tag_config('h1', font=f"{style['font']} {style['h1Size']}",
         foreground=style['h1Color'])
@@ -47,6 +46,10 @@ class Display:
 
         w.tag_config('h3', font=f"{style['font']} {style['h3Size']}",
         foreground=style['h3Color'])
+
+        w.tag_config('bold', font=font.Font(size=style['size'],weight='bold'))
+
+        w.tag_config('italic', font=font.Font(size=style['size'],slant='italic'))
 
         w.pack(expand=1, fill= tk.BOTH, side=tk.LEFT)
         w['state'] = tk.DISABLED
