@@ -1,44 +1,44 @@
-
-def rgbToHex(rgb):
-    return '#'+'%02x%02x%02x' % rgb
-
 display = dict(
-bg = rgbToHex((60, 60, 60)),
-fg = rgbToHex((200, 200, 200)),
+bg = '#262e33',
+fg = '#cecece',
 font = 'Calibri',
 width = 10,
 
 # Font Sizes
-size = 12,
-h1Size = 26,
-h2Size = 20,
-h3Size = 16,
+size = 16,
+h1Size = 30,
+h2Size = 25,
+h3Size = 18,
 
 # font Colors
-h1Color = rgbToHex((240, 240, 240)),
-h2Color = rgbToHex((200, 200, 200)),
-h3Color = rgbToHex((160, 160, 160))
+h1Color = '#e2e2e2',
+h2Color = '#cecece',
+h3Color = '#bababa'
 )
 
 
 editor = dict(
-    bg=rgbToHex((40, 40, 40)),
-    fg=rgbToHex((230, 230, 230)),
-    size=12,
+    bg='#1a2126',
+    fg='#bababa',
+    size=16,
     font = 'Consolas',
 
-    itlColor ='#da2fe0',
+    itlColor ='#ff9500',
     bldColor='#f2d95e',
-    hColor='#fc5c4e'
+    hColor='#b9cc55'
 )
 
 titlebar = dict(
-    bg = '#3f3f3f',
-    fg = '#b7b7b7'
+    font = "Consolas",
+    bg = '#1a2126',
+    fg = '#e2e2e2',
+    fgfade = '#686868',
+    highlight = "#262933"
 )
 
 menu =dict(
-    bg = '#3f3f3f',
+    font = 'Consolas',
+    bg = '#262e33',
     fg = '#b7b7b7',
-    titleSize = 25
+    titleSize = 28
 )

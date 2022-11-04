@@ -25,7 +25,7 @@ class window(tk.Tk):
 
         def getEditor(self):
                 file = self.destroyMenu()
-                bar =  title.titlebar(self)
+                bar =  title.titlebar(self,file)
                 editor = edit.Editor(self)
                 disp = d.Display(self)
                 self.editView =  (editor,disp,bar)

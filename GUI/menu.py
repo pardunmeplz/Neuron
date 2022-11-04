@@ -30,17 +30,17 @@ class Menu(tk.Frame):
         op = tk.Button(self,
             background=s['bg'],fg=s['fg'],
             text='...Open',relief=tk.FLAT,
-            command=lambda:self.browseFiles(root.getEditor))
+            command=lambda:self.browseFiles() and root.getEditor())
         op.pack(expand = 1, side=tk.LEFT)
         self.op = op
     
-    def browseFiles(self,fn,*args):
+    def browseFiles(self,*args):
         filename = filedialog.askopenfilename(
             initialdir = "/",title = "Select a File",
             filetypes = (("Markdown","*.MD*"),
                         ("all files","*.*")))
-        if filename.strip() == "": return
+        if filename.strip() == "": return False
         
         self.filename = filename
         self.op['text'] = f'...{filename[-15:]}'
-        fn()
+        return True
