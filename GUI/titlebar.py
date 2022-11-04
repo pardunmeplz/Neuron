@@ -16,5 +16,12 @@ class titlebar(tk.Frame):
         text='X',relief=tk.FLAT,
         command=lambda:root.destroy())
         x.pack(side=tk.RIGHT)
+
+        mx = tk.Button(self,
+        background=s['bg'],fg=s['fg'],
+        text='[]',relief=tk.FLAT,
+        command=lambda:root.state('zoomed') if root.state() != 'zoomed' else root.state('normal'))
+        mx.pack(side=tk.RIGHT)
+
         
         
