@@ -1,4 +1,5 @@
 import display as d
+import titlebar as title
 import editor as edit
 import tagsearch as t
 import tkinter as tk
@@ -15,20 +16,25 @@ def getRoot():
         return root
 
 def getEditor(root):
+        bar =  title.titlebar(root)
         editor = edit.Editor(root)
         disp = d.Display(root)
-        return (editor,disp)
+        return (editor,disp,bar)
 
 def render(editor,disp):
     text = editor.get_text()
     tags = t.get_tags(text)
     disp.write(text)
     disp.add_tags(tags)
+    editor.add_tags(tags)
 
 # run
 if __name__ == "__main__":
 
     root = getRoot()
-    editor,disp = getEditor(root)
+    editor,disp, bar = getEditor(root)
     editor.bind('<KeyRelease>',lambda _:render(editor,disp))
+    root.bind('<Control-Left>',lambda _:editor.hide())
+    root.bind('<Control-Right>',lambda _:editor.show())
+    disp.mouseBind('Control',editor.show)
     root.mainloop()

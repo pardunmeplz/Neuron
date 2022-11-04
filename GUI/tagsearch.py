@@ -8,7 +8,6 @@ tags = {
     'h3':'^###[\s].+$'
 }
 
-
 def get_tags(text):
     lines = text.split('\n')
     mytags = []
@@ -25,9 +24,6 @@ def get_tags(text):
     return mytags
 
 if __name__ == "__main__":
-    
-    #text = '# A_B_C'
-    #print(re.search(tags['italic'],text))
     text = "# Title \n## Subtitle \n This is text"
     print(get_tags(text))
 
