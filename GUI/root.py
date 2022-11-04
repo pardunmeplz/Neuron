@@ -2,6 +2,7 @@ import display as d
 import titlebar as title
 import editor as edit
 import tagsearch as t
+import menu as m
 import tkinter as tk
 import ctypes
 
@@ -14,7 +15,7 @@ class window(tk.Tk):
                 ctypes.windll.shcore.SetProcessDpiAwareness(True)
                 
                 self.title("Neuron")
-                self.geometry("1000x600")
+
                 self.option_add('*Font', 'Courier 15')
 
                 self.overrideredirect(True) # get rid of titlebar
@@ -23,6 +24,7 @@ class window(tk.Tk):
 
 
         def getEditor(self):
+                file = self.destroyMenu()
                 bar =  title.titlebar(self)
                 editor = edit.Editor(self)
                 disp = d.Display(self)
@@ -35,8 +37,35 @@ class window(tk.Tk):
 
                 bar.bind('<Button-1>',self._onClick)
                 bar.bind('<B1-Motion>',self._onDrag)
+                
+                self.w , self. h = 1000, 600
+                self.geometry(f"{self.w}x{self.h}")
+        
+        def destroyEditor(self):
+                editor, disp, bar = self.editView
+                editor.destroy()
+                disp.destroy()
+                bar.destroy()
+                del self.editView
 
-        #def getMenu(root):
+        def getMenu(self):
+                menu = m.Menu(self)
+                self.menu = menu
+
+                menu.bind('<Button-1>',self._onClick)
+                menu.bind('<B1-Motion>',self._onDrag)
+
+                self.w , self. h = 600, 400
+                self.geometry(f"{self.w}x{self.h}")
+
+                w, h = self.winfo_screenwidth(), self.winfo_screenheight()
+                self.geometry(f"+{(w - self.w)//2}+{(h - self.h)//2}")
+        
+        def destroyMenu(self) -> None:
+                file = self.menu.filename
+                self.menu.destroy()
+                del self.menu
+                return file
 
         def render(self):
                 editor,disp,_ = self.editView
@@ -61,5 +90,5 @@ class window(tk.Tk):
 if __name__ == "__main__":
 
     root = window()
-    root.getEditor()
+    root.getMenu()
     root.mainloop()

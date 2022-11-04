@@ -36,3 +36,9 @@ titlebar = dict(
     bg = '#3f3f3f',
     fg = '#b7b7b7'
 )
+
+menu =dict(
+    bg = '#3f3f3f',
+    fg = '#b7b7b7',
+    titleSize = 25
+)
