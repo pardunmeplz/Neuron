@@ -29,8 +29,9 @@ class window(tk.Tk):
                 editor = edit.Editor(self)
                 disp = d.Display(self)
                 self.editView =  (editor,disp,bar)
-                
+
                 editor.bind('<KeyRelease>',lambda _:self.render())
+                editor.bind('<Control-s>',lambda _:self.saveFile())
                 self.bind('<Control-Left>',lambda _:editor.hide())
                 self.bind('<Control-Right>',lambda _:editor.show())
                 disp.mouseBind('Control',editor.show)
@@ -40,6 +41,22 @@ class window(tk.Tk):
                 
                 self.w , self. h = 1000, 600
                 self.geometry(f"{self.w}x{self.h}")
+
+                self.file = file
+                file = open(file, mode = 'r')
+                text = file.read()
+                file.close()
+
+                editor.insert('end',text)
+                self.render()
+
+        
+        def saveFile(self):
+                editor, _ , _ = self.editView
+                text = editor.get(1.0,'end')
+                file = open(self.file, mode='w')
+                file.write(text)
+                file.close()
         
         def destroyEditor(self):
                 editor, disp, bar = self.editView
