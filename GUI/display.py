@@ -24,15 +24,24 @@ class Display(tk.Text):
         self.pack(expand=1, fill= tk.BOTH, side=tk.RIGHT)
         self['state'] = tk.DISABLED
 
-    def write(self,text,newline = True):
+    def write(self,text, tags):
      
         self['state'] = tk.NORMAL
-        
-        if self.get(1.0,'end').strip()=="": newline = False
-        if newline: self.insert('end',"\n")
-        
+
         self.delete(1.0,'end')
         self.insert('end', text)
+
+        clean = {
+                'h1':lambda start, end:self.delete(start,start+0.2),
+                'h2':lambda start, end:self.delete(start,start+0.3),
+                'h3':lambda start, end:self.delete(start,start+0.4),
+                'bold':lambda start, end:self.delete(end-0.1) or self.delete(start),
+                'italic':lambda start, end:self.delete(start) or self.delete(end-0.1)
+                }
+
+        for tag,start,end in tags:
+            clean[tag](start,end)
+
         self['state'] = tk.DISABLED
     
     def add_tags(self,tags:list):

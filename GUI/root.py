@@ -88,7 +88,7 @@ class window(tk.Tk):
                 editor,disp,_ = self.editView
                 text = editor.get_text()
                 tags = t.get_tags(text)
-                disp.write(text)
+                disp.write(text,tags)
                 disp.add_tags(tags)
                 editor.add_tags(tags)
 
