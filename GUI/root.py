@@ -32,7 +32,7 @@ class window(tk.Tk):
 
                 editor.bind('<KeyRelease>',lambda _:self.render())
                 editor.bind('<Control-s>',lambda _:self.saveFile())
-                self.bind('<Control-Left>',lambda _:editor.hide())
+                self.bind('<Control-Left>',lambda _:editor.pack_forget())
                 self.bind('<Control-Right>',lambda _:editor.show())
                 disp.mouseBind('Control',editor.show)
 
@@ -86,7 +86,7 @@ class window(tk.Tk):
 
         def render(self):
                 editor,disp,_ = self.editView
-                text = editor.get_text()
+                text = editor.get(0.1,'end')
                 tags = t.get_tags(text)
                 disp.write(text,tags)
                 disp.add_tags(tags)

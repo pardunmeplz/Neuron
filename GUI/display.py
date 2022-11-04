@@ -55,5 +55,4 @@ class Display(tk.Text):
 
     def mouseBind(self,key,show):
         line = lambda :self.index("current")
-        print(line())
         self.bind(f'<{key}-Button>',lambda _:show(line = line()))

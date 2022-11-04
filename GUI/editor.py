@@ -21,19 +21,13 @@ class Editor(tk.Text):
 
         self.tag_config('bold', foreground=s['bldColor'])
         self.tag_config('italic', foreground=s['itlColor'])
-    
-    def get_text(self):
-        w = self
-        return w.get(1.0,'end')
 
     def add_tags(self,tags:list):
-        w = self        
+        all = ['h1','h2','h3','bold','italic']
+        for tag in all:
+            self.tag_remove(tag,0.1,'end')
         for tag,start,end in tags:
-            w.tag_add(tag,start,end)
-    
-    def hide(self):
-        w = self
-        w.pack_forget()
+            self.tag_add(tag,start,end)
 
     def show(self, line = None):
         w = self
