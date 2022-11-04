@@ -1,3 +1,1 @@
-    def bind(self,event,function):
-        w = self.widget
-        w.bind(event,function)
+        root.geometry("1000x600")

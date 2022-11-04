@@ -1,17 +1,20 @@
 import tkinter as tk
-from tkinter import ttk
 from styles import titlebar as s
 
 
-class titlebar:
-    def __init__(self,root) -> None:
-        w = tk.Frame(root,height=35,border=2, relief=tk.FLAT,
-        background=s["bg"])
-        w.pack(fill=tk.X,side=tk.TOP)
-        self.widget = w
-
-        l = tk.Label(w,
-        fg=s['fg'],background=s['bg'],
-        text="nav buttons to come here")
-        l.pack(side=tk.LEFT)
-        pass
+class titlebar(tk.Frame):
+    def __init__(self,root:tk.Tk) -> None:
+        tk.Frame.__init__(
+            self,root,
+            height=35,border=2, 
+            relief=tk.FLAT,
+            background=s["bg"])
+        self.pack(fill=tk.X,side=tk.TOP)
+        
+        x = tk.Button(self,
+        background=s['bg'],fg=s['fg'],
+        text='X',relief=tk.FLAT,
+        command=lambda:root.destroy())
+        x.pack(side=tk.RIGHT)
+        
+        

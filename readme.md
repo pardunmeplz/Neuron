@@ -4,6 +4,12 @@ A basic Markdown note taker / text editor based on python.
 
 > PS the name is just random AF, nothing to do with any features i plan to implement, I just felt like naming it this
 
+## Shortcuts
+
+- Ctrl + left to hide editor
+- Ctrl + right to show editor
+- Ctrl + left_click display to show in editor
+
 ## To do
 
 - Text editor widget
