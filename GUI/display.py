@@ -54,4 +54,6 @@ class Display(tk.Text):
         self['state'] = tk.DISABLED
 
     def mouseBind(self,key,show):
-        self.bind(f'<{key}-Button>',lambda _:show(line = self.index("current")))
+        line = lambda :self.index("current")
+        print(line())
+        self.bind(f'<{key}-Button>',lambda _:show(line = line()))
