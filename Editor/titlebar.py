@@ -14,7 +14,8 @@ class titlebar(tk.Frame):
         l = tk.Label(self,
         background=s['bg'],fg=s['fgfade'],
         text = file, font=s['font'])
-        l.pack(expand=1,side=tk.LEFT,fill=tk.X)
+        l.pack(expand=1,side=tk.LEFT,fill=tk.BOTH)
+        self.title = l
 
         x = tk.Button(self,
         background=s['bg'],fg=s['fg'],

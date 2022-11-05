@@ -34,8 +34,8 @@ class window(tk.Tk):
                 self.bind('<Control-Right>',lambda _:editor.show())
                 disp.mouseBind('Control',editor.show)
 
-                bar.bind('<Button-1>',self._onClick)
-                bar.bind('<B1-Motion>',self._onDrag)
+                bar.title.bind('<Button-1>',self._onClick)
+                bar.title.bind('<B1-Motion>',self._onDrag)
                 
                 self.w , self. h = 1000, 600
                 self.geometry(f"{self.w}x{self.h}")
@@ -98,8 +98,6 @@ class window(tk.Tk):
                 x = self.winfo_pointerx() - self._xOffset
                 y = self.winfo_pointery() - self._yOffset
                 self.geometry('+{x}+{y}'.format(x=x,y=y))
-
-
 
 # run
 if __name__ == "__main__":
