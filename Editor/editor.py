@@ -1,5 +1,6 @@
 import tkinter as tk
 from styles import editor as s
+from Tags.tagList import tags
 
 class Editor(tk.Text):
 
@@ -14,21 +15,15 @@ class Editor(tk.Text):
         )
         
         self.pack(expand=1, fill= tk.BOTH, side=tk.LEFT)
+        for tag in tags.values():
+            self.tag_config(tag.name, foreground=tag.editor_color)
 
-        self.tag_config('h1', foreground=s['hColor'])
-        self.tag_config('h2', foreground=s['hColor'])
-        self.tag_config('h3', foreground=s['hColor'])
-
-        self.tag_config('bold', foreground=s['bldColor'])
-        self.tag_config('italic', foreground=s['itlColor'])
-        self.tag_config('hlink',foreground=s['hlinkColor'])
-
-    def add_tags(self,tags:list):
-        all = ['h1','h2','h3','bold','italic']
-        for tag in all:
-            self.tag_remove(tag,0.1,'end')
-        for tag,start,end in tags:
-            self.tag_add(tag,start,end)
+    def add_tags(self,tagPositions:list):
+        for name in tags:
+            self.tag_remove(name,0.1,'end')
+            
+        for name,start,end in tagPositions:
+            self.tag_add(name,start,end)
 
     def show(self, line = None):
         w = self

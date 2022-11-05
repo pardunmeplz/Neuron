@@ -1,28 +1,24 @@
 import re
-
-tags = {
-    'bold':'\*.+?\*',
-    'italic':'_.+?_',
-    'hlink':'<.+?>',
-    'h1':'^#[\s].+$',
-    'h2':'^##[\s].+$',
-    'h3':'^###[\s].+$'
-}
+from Tags.tagList import tags
 
 def get_tags(text):
+
     lines = text.split('\n')
-    mytags = []
+    tagPositions = []
+    
     for i, line in enumerate(lines):
-        for tag, regex in tags.items():
+    
+        for tag in tags.values():
             
-            search = re.search(regex,line)
+            search = re.search(tag.regex,line)
             if search != None:
                 start,end = search.span()
                 start = float(f'{i+1}.{start}')
                 end = float(f'{i+1}.{end}')
-                mytags.append((tag,start,end))
                 
-    return mytags
+                tagPositions.append((tag.name,start,end))
+                
+    return tagPositions
 
 if __name__ == "__main__":
     text = "# Title \n## Subtitle \n This is text"
