@@ -1,7 +1,6 @@
 import Editor.display as d
 import Editor.titlebar as title
 import Editor.editor as edit
-import Tags.tagsearch as t
 import Menu.menu as m
 import tkinter as tk
 import ctypes
@@ -86,10 +85,8 @@ class window(tk.Tk):
         def render(self):
                 editor,disp,_ = self.editView
                 text = editor.get(0.1,'end')
-                tagPositions = t.get_tags(text)
-                disp.write(text,tagPositions)
-                disp.add_tags(tagPositions)
-                editor.add_tags(tagPositions)
+                disp.write(text)
+                editor.syntax()
 
         def _onClick(self,event):
                 self._xOffset = event.x

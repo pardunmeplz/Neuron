@@ -1,6 +1,6 @@
 import tkinter as tk
 from styles import editor as s
-from Tags.tagList import tags
+from Editor.tagList import tags
 
 class Editor(tk.Text):
 
@@ -34,3 +34,18 @@ class Editor(tk.Text):
         line = float(float(line)//1)
         w.mark_set("insert",line)
         w.see(line)
+
+    def syntax(self):
+
+        tagindices = []
+        for tag in tags.values():
+            result = self.search(tag.regexp,1.0,stopindex="end",regexp=True)
+            if result:
+                print(result)
+                start,end = result
+                tagindices.append(tag.name,start,end)
+        
+        for name in tags:
+            self.tag_remove(name,0.1,'end')    
+        for name,start,end in tagindices:
+            self.tag_add(name,start,end)
