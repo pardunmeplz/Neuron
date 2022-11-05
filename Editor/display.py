@@ -11,7 +11,8 @@ class Display(tk.Text):
             height = 5,width = s['width'],
             bg = s['bg'], fg= s['fg'],
             border=30,relief =tk.FLAT,
-            font= f"{s['font']} {s['size']}"
+            font= f"{s['font']} {s['size']}",
+            wrap= tk.WORD
         )
 
         # configure tags

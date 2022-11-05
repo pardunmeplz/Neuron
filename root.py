@@ -5,6 +5,7 @@ import Tags.tagsearch as t
 import Menu.menu as m
 import tkinter as tk
 import ctypes
+from styles import root as s
 
 class window(tk.Tk):
         def __init__(self):
@@ -37,7 +38,7 @@ class window(tk.Tk):
                 bar.title.bind('<Button-1>',self._onClick)
                 bar.title.bind('<B1-Motion>',self._onDrag)
                 
-                self.w , self. h = 1000, 600
+                self.w , self. h = s['editor_size']
                 self.geometry(f"{self.w}x{self.h}")
 
                 self.file = file
@@ -70,7 +71,7 @@ class window(tk.Tk):
                 menu.bind('<Button-1>',self._onClick)
                 menu.bind('<B1-Motion>',self._onDrag)
 
-                self.w , self. h = 600, 400
+                self.w , self. h = s['menu_size']
                 self.geometry(f"{self.w}x{self.h}")
 
                 w, h = self.winfo_screenwidth(), self.winfo_screenheight()

@@ -1,3 +1,8 @@
+root = dict(
+    menu_size = (600,400),
+    editor_size = (1200,800) 
+)
+
 display = dict(
 bg = '#262e33',
 fg = '#cecece',

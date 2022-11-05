@@ -11,7 +11,8 @@ class Editor(tk.Text):
             background=s['bg'], fg=s['fg'],
             relief =tk.FLAT,border = 30,
             font= f"{s['font']} {s['size']}",
-            insertbackground=s['fg']
+            insertbackground=s['fg'],
+            wrap= tk.WORD
         )
         
         self.pack(expand=1, fill= tk.BOTH, side=tk.LEFT)
