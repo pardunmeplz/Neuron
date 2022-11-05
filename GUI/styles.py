@@ -13,9 +13,10 @@ h3Size = 18,
 # font Colors
 h1Color = '#e2e2e2',
 h2Color = '#cecece',
-h3Color = '#bababa'
-)
+h3Color = '#bababa',
 
+hlinkColor = '#5ca2f2'
+)
 
 editor = dict(
     bg='#1a2126',
@@ -25,7 +26,8 @@ editor = dict(
 
     itlColor ='#ff9500',
     bldColor='#f2d95e',
-    hColor='#b9cc55'
+    hColor='#b9cc55',
+    hlinkColor = '#96c3f7'
 )
 
 titlebar = dict(

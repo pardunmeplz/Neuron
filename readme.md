@@ -13,16 +13,15 @@ A basic Markdown note taker / text editor based on python.
 ## To do
 
 - Text editor widget
-	- editing done
-	- syntax highlight done
+  - editing done
+  - syntax highlight done
 - Display Widget ( displaying markdown formatted)
-	- h1, h2, h3 , bold, italics are implemented
-	- cleaning tags done
+  - h1, h2, h3 , bold, italics are implemented
+  - cleaning tags done
 - PDF export
 - HTML Export (control style with CSS)
 - Save and load MD files locally
-	- done
+  - done
 - Connect to google drive (maybe more cloud providers later if i feel like it)
 - Tree view of files in the notes folder
 - Maybe customizable themes
-

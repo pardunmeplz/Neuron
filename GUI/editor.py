@@ -21,6 +21,7 @@ class Editor(tk.Text):
 
         self.tag_config('bold', foreground=s['bldColor'])
         self.tag_config('italic', foreground=s['itlColor'])
+        self.tag_config('hlink',foreground=s['hlinkColor'])
 
     def add_tags(self,tags:list):
         all = ['h1','h2','h3','bold','italic']

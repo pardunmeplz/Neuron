@@ -21,6 +21,8 @@ class Display(tk.Text):
         self.tag_config('bold', font=font.Font(size=s['size'],weight='bold'))
         self.tag_config('italic', font=font.Font(size=s['size'],slant='italic'))
 
+        self.tag_config('hlink', foreground=s['hlinkColor'])
+
         self.pack(expand=1, fill= tk.BOTH, side=tk.RIGHT)
         self['state'] = tk.DISABLED
 
@@ -36,7 +38,8 @@ class Display(tk.Text):
                 'h2':lambda start, end:self.delete(start,start+0.3),
                 'h3':lambda start, end:self.delete(start,start+0.4),
                 'bold':lambda start, end:self.delete(end-0.1) or self.delete(start),
-                'italic':lambda start, end:self.delete(start) or self.delete(end-0.1)
+                'italic':lambda start, end:self.delete(start) or self.delete(end-0.1),
+                'hlink':lambda start, end:self.delete(start) or self.delete(end - 0.1)
                 }
 
         for tag,start,end in tags:

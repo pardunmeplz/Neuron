@@ -6,7 +6,6 @@ import menu as m
 import tkinter as tk
 import ctypes
 
-
 class window(tk.Tk):
         def __init__(self):
                 tk.Tk.__init__(self)
@@ -21,7 +20,6 @@ class window(tk.Tk):
                 self.overrideredirect(True) # get rid of titlebar
                 self._xOffset = 0
                 self._yOffset = 0
-
 
         def getEditor(self):
                 file = self.destroyMenu()
