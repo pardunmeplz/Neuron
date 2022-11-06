@@ -1,48 +1,53 @@
 import tkinter as tk
-import tkinter.font as font
 from styles import display as s
-from Tags.tagList import tags
+import tkhtmlview as tkh
+import markdown
 
-class Display(tk.Text):
+# setting default values of tkhtmlview module
+default_config = tkh.html_parser.DEFAULT_STACK[tkh.html_parser.WCfg.KEY]
+default_config[tkh.html_parser.WCfg.FOREGROUND] = [("__DEFAULT__", s['fg'])]
 
+default_font = tkh.html_parser.DEFAULT_STACK[tkh.html_parser.Fnt.KEY]
+default_font[tkh.html_parser.Fnt.SIZE] = [("__DEFAULT__",s['size'])]
+
+class Display(tkh.HTMLText):
     def __init__(self,root):
-        tk.Text.__init__(
+        tkh.HTMLText.__init__(
             self,root,
             height = 5,width = s['width'],
-            bg = s['bg'], fg= s['fg'],
-            border=30,relief =tk.FLAT,
-            font= f"{s['font']} {s['size']}",
-            wrap= tk.WORD
-        )
-
-        # configure tags
-        for tag in tags.values():
-            self.tag_config(tag.name, font = tag.display_font, foreground=tag.display_color)
-
+            border = 30,relief=tk.FLAT)
+        
         self.pack(expand=1, fill= tk.BOTH, side=tk.RIGHT)
         self['state'] = tk.DISABLED
+        self.config(background=s['bg'],font=f"{s['font']} {s['size']}")
 
-    def write(self,text, tagPositions):
-     
-        self['state'] = tk.NORMAL
+        self.html_parser = _html_parser()
 
-        self.delete(1.0,'end')
-        self.insert('end', text)
-
-        for name,start,end in tagPositions:
-            tags[name].clean_function(start,end,self.delete)
-
-        self['state'] = tk.DISABLED
     
-    def add_tags(self,tagPositions:list):
-        
+    def write(self,text):
         self['state'] = tk.NORMAL
-
-        for tag,start,end in tagPositions:
-            self.tag_add(tag,start,end)
-
+        html = markdown.markdown(text)
+        self.set_html(html)
         self['state'] = tk.DISABLED
 
     def mouseBind(self,key,show):
         line = lambda :self.index("current")
         self.bind(f'<{key}-Button>',lambda _:show(line = line()))
+
+class _html_parser(tkh.html_parser.HTMLTextParser):
+    def __init__(self):
+        super().__init__()
+    
+    def _parse_styles(self, tag, attrs):
+        super()._parse_styles(tag, attrs)
+        HTML = tkh.html_parser.HTML
+        WCfg = tkh.html_parser.WCfg
+        Fnt = tkh.html_parser.Fnt
+
+        # overwrite styles for any tags here
+
+        if tag ==  HTML.Tag.A and attrs[HTML.Attrs.HREF]:
+            self._stack_add(tag, WCfg.FOREGROUND, s['hlinkColor'])
+        
+        elif tag == HTML.Tag.H1:
+            self._stack_add(tag,WCfg.FOREGROUND, s['h1Color'])

@@ -1,6 +1,5 @@
 import tkinter as tk
 from styles import editor as s
-from Tags.tagList import tags
 
 class Editor(tk.Text):
 
@@ -14,17 +13,7 @@ class Editor(tk.Text):
             insertbackground=s['fg'],
             wrap= tk.WORD
         )
-        
         self.pack(expand=1, fill= tk.BOTH, side=tk.LEFT)
-        for tag in tags.values():
-            self.tag_config(tag.name, foreground=tag.editor_color)
-
-    def add_tags(self,tagPositions:list):
-        for name in tags:
-            self.tag_remove(name,0.1,'end')
-            
-        for name,start,end in tagPositions:
-            self.tag_add(name,start,end)
 
     def show(self, line = None):
         w = self
