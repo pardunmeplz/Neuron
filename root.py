@@ -7,7 +7,7 @@ import ctypes
 from styles import root as s
 
 class window(tk.Tk):
-        def __init__(self):
+        def __init__(self) -> None:
                 tk.Tk.__init__(self)
 
                 # gives better sharpness
@@ -21,7 +21,7 @@ class window(tk.Tk):
                 self._xOffset = 0
                 self._yOffset = 0
 
-        def getEditor(self):
+        def getEditor(self) -> None:
                 file = self.destroyMenu()
                 bar =  title.titlebar(self,file)
                 editor = edit.Editor(self)
@@ -49,21 +49,21 @@ class window(tk.Tk):
                 self.render()
 
         
-        def saveFile(self):
+        def saveFile(self) -> None:
                 editor, _ , _ = self.editView
                 text = editor.get(1.0,'end')
                 file = open(self.file, mode='w')
                 file.write(text)
                 file.close()
         
-        def destroyEditor(self):
+        def destroyEditor(self) -> None:
                 editor, disp, bar = self.editView
                 editor.destroy()
                 disp.destroy()
                 bar.destroy()
                 del self.editView
 
-        def getMenu(self):
+        def getMenu(self) -> None:
                 menu = m.Menu(self)
                 self.menu = menu
 
@@ -82,16 +82,16 @@ class window(tk.Tk):
                 del self.menu
                 return file
 
-        def render(self):
+        def render(self) -> None:
                 editor,disp,_ = self.editView
                 text = editor.get(0.1,'end')
                 disp.write(text)
 
-        def _onClick(self,event):
+        def _onClick(self,event) -> None:
                 self._xOffset = event.x
                 self._yOffset = event.y
 
-        def _onDrag(self,_):
+        def _onDrag(self,_) -> None:
                 x = self.winfo_pointerx() - self._xOffset
                 y = self.winfo_pointery() - self._yOffset
                 self.geometry('+{x}+{y}'.format(x=x,y=y))
