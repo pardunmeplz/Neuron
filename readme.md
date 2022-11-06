@@ -6,6 +6,12 @@ A basic, open-source markdown note taker / text editor based on python & Tkinter
 
 > PS the name is just random AF, nothing to do with any features, I just felt like naming it this
 
+## Dependencies
+
+- tk 8.6.12
+- markdown 3.4.1
+- tkhtmlview 0.1.1.post5
+
 ## Shortcuts
 
 - Ctrl + left to hide editor
