@@ -1,76 +1,40 @@
 import tkinter as tk
 from styles import display as s
-from Editor.tagList import tags
 import tkhtmlview as tkh
 import markdown
 
+# setting default values of tkhtmlview module
+default_config = tkh.html_parser.DEFAULT_STACK[tkh.html_parser.WCfg.KEY]
+default_config[tkh.html_parser.WCfg.FOREGROUND] = [("__DEFAULT__", s['fg'])]
+
+default_font = tkh.html_parser.DEFAULT_STACK[tkh.html_parser.Fnt.KEY]
+default_font[tkh.html_parser.Fnt.SIZE] = [("__DEFAULT__",s['size'])]
+
 class Display(tkh.HTMLText):
     def __init__(self,root):
-        tkh.HTMLText.__init__(self,root,height = 5,width = s['width'],)
+        tkh.HTMLText.__init__(
+            self,root,
+            height = 5,width = s['width'],
+            border = 30,relief=tk.FLAT)
         
         self.pack(expand=1, fill= tk.BOTH, side=tk.RIGHT)
         self['state'] = tk.DISABLED
+        self.config(background=s['bg'],font=f"{s['font']} {s['size']}")
+
+        self.html_parser = _html_parser()
+
     
     def write(self,text):
+        self['state'] = tk.NORMAL
         html = markdown.markdown(text)
         self.set_html(html)
-
+        self['state'] = tk.DISABLED
 
     def mouseBind(self,key,show):
         line = lambda :self.index("current")
         self.bind(f'<{key}-Button>',lambda _:show(line = line()))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Dissplay(tk.Text):
-
-    def __init__(self,root):
-        tk.Text.__init__(
-            self,root,
-            height = 5,width = s['width'],
-            bg = s['bg'], fg= s['fg'],
-            border=30,relief =tk.FLAT,
-            font= f"{s['font']} {s['size']}",
-            wrap= tk.WORD
-        )
-
-        # configure tags
-        for tag in tags.values():
-            self.tag_config(tag.name, font = tag.display_font, foreground=tag.display_color)
-
-        self.pack(expand=1, fill= tk.BOTH, side=tk.RIGHT)
-        self['state'] = tk.DISABLED
-
-    def write(self,text):
-     
-        self['state'] = tk.NORMAL
-
-        self.rawtext = text
-
-        self.delete(1.0,'end')
-        self.insert('end', text)
-
-        self['state'] = tk.DISABLED
+class _html_parser(tkh.html_parser.HTMLTextParser):
+    def __init__(self):
+        super().__init__()
     
-    def add_tags(self,tagPositions:list):
-        
-        self['state'] = tk.NORMAL
-
-        for tag,start,end in tagPositions:
-            self.tag_add(tag,start,end)
-
-        for name,start,end in tagPositions[::-1]:
-            tags[name].clean_function(start,end,self.delete)
-        
-        self['state'] = tk.DISABLED
