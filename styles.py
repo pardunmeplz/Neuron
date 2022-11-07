@@ -40,7 +40,7 @@ titlebar = dict(
     bg = '#1a2126',
     fg = '#e2e2e2',
     fgfade = '#686868',
-    highlight = "#262933"
+    highlight = "#2a353d"
 )
 
 menu =dict(

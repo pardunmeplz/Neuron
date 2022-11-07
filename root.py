@@ -30,7 +30,7 @@ class window(tk.Tk):
 
                 editor.bind('<KeyRelease>',lambda _:self.render())
                 editor.bind('<Control-s>',lambda _:self.saveFile())
-                self.bind('<Control-Left>',lambda _:editor.pack_forget())
+                self.bind('<Control-Left>',lambda _:editor.frame.pack_forget())
                 self.bind('<Control-Right>',lambda _:editor.show())
                 disp.mouseBind('Control',editor.show)
 
@@ -46,6 +46,7 @@ class window(tk.Tk):
                 file.close()
 
                 editor.insert('end',text)
+                editor.frame.pack_forget()
                 self.render()
 
         
