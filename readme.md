@@ -18,6 +18,8 @@ A basic, open-source markdown note taker / text editor based on python & Tkinter
 - Ctrl + right to show editor
 - Ctrl + left_click a line in display to show in editor
 - Ctrl + s to save changes to file
+- Ctrl + z to undo
+- Ctrl + y to redo
 
 ## Done
 
