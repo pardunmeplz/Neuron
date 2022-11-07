@@ -59,20 +59,21 @@ class window(tk.Tk):
         
         def destroyEditor(self) -> None:
                 editor, disp, bar = self.editView
-                editor.destroy()
+                editor.frame.destroy()
                 disp.destroy()
                 bar.destroy()
                 del self.editView
 
         def getMenu(self) -> None:
+                
+                self.w , self. h = s['menu_size']
+                self.geometry(f"{self.w}x{self.h}")
+
                 menu = m.Menu(self)
                 self.menu = menu
 
                 menu.bind('<Button-1>',self._onClick)
                 menu.bind('<B1-Motion>',self._onDrag)
-
-                self.w , self. h = s['menu_size']
-                self.geometry(f"{self.w}x{self.h}")
 
                 w, h = self.winfo_screenwidth(), self.winfo_screenheight()
                 self.geometry(f"+{(w - self.w)//2}+{(h - self.h)//2}")
@@ -97,6 +98,11 @@ class window(tk.Tk):
                 x = self.winfo_pointerx() - self._xOffset
                 y = self.winfo_pointery() - self._yOffset
                 self.geometry('+{x}+{y}'.format(x=x,y=y))
+        
+        def closeFile(self) -> None:
+                # add popup to ask to save any changes
+                self.destroyEditor()
+                self.getMenu()
 
 # run
 if __name__ == "__main__":

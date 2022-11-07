@@ -12,11 +12,16 @@ class titlebar(tk.Frame):
         self.pack(fill=tk.X,side=tk.TOP)
         
         # menu buttons
-        logo = tk.Label(self, background=s['bg'],fg=s['fg'],
+        logo = tk.Label(self, background=s['bg'],fg='#63b0f2',
         text = ' N ', font = f"{s['font']} 16 bold")
         logo.pack(side=tk.LEFT)
 
-        _mButton(self,'File',lambda:None)
+        fileMenu = tk.Menu(self)
+        fileMenu.add_command(label='Save',command=lambda:root.saveFile())
+        fileMenu.add_command(label='CLose File',command=lambda:root.closeFile())
+        _mButton(self,'File',fileMenu)
+
+        
 
         # title label
         self.title = tk.Label(
@@ -27,7 +32,7 @@ class titlebar(tk.Frame):
         self.title.pack(expand=1,side=tk.LEFT,fill=tk.BOTH)
 
         # window buttons
-        _Button(self, 'X',lambda:root.destroy(),activebg= 'red')
+        _Button(self, 'X',lambda:root.destroy(),activebg= 'red',activefg='white')
 
         _Button(self,'[]',lambda:root.state('zoomed') if root.state() != 'zoomed' else root.state('normal'))
         
@@ -35,35 +40,36 @@ class titlebar(tk.Frame):
 
         
 class _Button(tk.Button):
-    def __init__ (self,bar,text,command,activebg = s['highlight']) -> None:
+    def __init__ (self,bar,text,command,
+    activebg = s['highlight'], activefg = s['fg']) -> None:
         super().__init__(
             bar,
             background=s['bg'],fg=s['fg'],
             text=text,relief=tk.FLAT,
             width = 4,command = command,
-            highlightbackground=activebg
+            highlightbackground=activebg,
+            bd = 0
         )
-        self.bind('<Enter>',lambda _:self.onEnter(activebg))
-        self.bind('<Leave>',lambda _:self.onLeave(s['bg']))
+        self.bind('<Enter>',lambda _:self.onEnter(activebg,activefg))
+        self.bind('<Leave>',lambda _:self.onLeave())
         self.pack(side=tk.RIGHT)
 
-    def onEnter(self,activeBg):
-        self.configure(background=activeBg)
+    def onEnter(self,activebg,activefg):
+        self.configure(background=activebg,foreground=activefg)
 
-    def onLeave(self,bg):
-        self.configure(background=bg)
+    def onLeave(self):
+        self.configure(background=s['bg'],foreground=s['fg'])
 
 class _mButton(_Button):
-    def __init__(self, bar, text, command) -> None:
-        super().__init__(bar, text, command, s['highlight'])
+    def __init__(self, bar, text, menu) -> None:
+        super().__init__(
+            bar, text,
+            lambda :menu.tk_popup(x=self.winfo_rootx(),y=self.winfo_rooty()),
+            activefg = s['highlight'])
         self.pack(side = tk.LEFT)
-        self.config(foreground=s['fgfade'],font = f"{s['font']} {s['size']-2}",width=5)
-
+        self.config(foreground=s['fgfade'],font = f"{s['font']} {s['size']-2}",width=5,
+        activebackground=s['highlight'], activeforeground=s['fgfade'])
     
-    def onEnter(self, activeBg):
-        super().onEnter(activeBg)
-        self.configure(foreground=s['fg'])
-    
-    def onLeave(self, bg):
-        super().onLeave(bg)
+    def onLeave(self):
+        super().onLeave()
         self.configure(foreground=s['fgfade'])
