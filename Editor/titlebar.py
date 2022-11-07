@@ -31,5 +31,12 @@ class titlebar(tk.Frame):
         width = 4)
         mx.pack(side=tk.RIGHT)
 
+        mn = tk.Button(self,
+        background=s['bg'],fg=s['fg'],
+        text='_',relief=tk.FLAT,
+        command=lambda:root.state('withdrawn'),
+        width = 4)
+        mn.pack(side=tk.RIGHT)
+
         
         

@@ -10,10 +10,6 @@ A basic, open-source markdown note taker / text editor based on python & Tkinter
 
 > PS the name is just random AF, nothing to do with any features, I just felt like naming it this
 
-
-
-
-
 ## Dependencies
 
 - tk 8.6.12
@@ -28,20 +24,6 @@ A basic, open-source markdown note taker / text editor based on python & Tkinter
 - Ctrl + s to save changes to file
 - Ctrl + z to undo
 - Ctrl + y to redo
-
-## Done
-
-- basic text editing and display
-- reading and writing local MD files
-- syntax highlight in editor
-- Currently recognized tags
-  - h1
-  - h2
-  - h3
-  - bold
-  - Italics
-  - Hyperlink
-- Rendering display for above tags done
 
 ## Theme Customization
 
