@@ -86,6 +86,7 @@ class window(tk.Tk):
                 editor,disp,_ = self.editView
                 text = editor.get(0.1,'end')
                 disp.write(text)
+                editor.edit_separator()
 
         def _onClick(self,event) -> None:
                 self._xOffset = event.x
