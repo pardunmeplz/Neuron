@@ -2,9 +2,17 @@
 
 A basic, open-source markdown note taker / text editor based on python & Tkinter
 
+![SS 1](img/ss1.png)
+
+![SS 1](img/ss2.png)
+
 ~ work in progress
 
 > PS the name is just random AF, nothing to do with any features, I just felt like naming it this
+
+
+
+
 
 ## Dependencies
 
@@ -43,9 +51,9 @@ The theme of the program is controled by the `styles` file with a `python dictio
 
 - Text editor widget
   - add line numbering
-  - add undo - redo stack
   - add menus to title bar
   - persistance to reopen a previously opened file
+  - add syntax highligting
 - Display Widget
   - add support for more tags
 

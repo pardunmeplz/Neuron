@@ -37,17 +37,3 @@ class Display(tkh.HTMLText):
 class _html_parser(tkh.html_parser.HTMLTextParser):
     def __init__(self):
         super().__init__()
-    
-    def _parse_styles(self, tag, attrs):
-        super()._parse_styles(tag, attrs)
-        HTML = tkh.html_parser.HTML
-        WCfg = tkh.html_parser.WCfg
-        Fnt = tkh.html_parser.Fnt
-
-        # overwrite styles for any tags here
-
-        if tag ==  HTML.Tag.A and attrs[HTML.Attrs.HREF]:
-            self._stack_add(tag, WCfg.FOREGROUND, s['hlinkColor'])
-        
-        elif tag == HTML.Tag.H1:
-            self._stack_add(tag,WCfg.FOREGROUND, s['h1Color'])

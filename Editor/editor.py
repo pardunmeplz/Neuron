@@ -19,7 +19,6 @@ class Editor(tk.Text):
         # Editor Shortcuts
         self.bind('<Control-z>',lambda _:self.edit_undo())
         self.bind('<Control-y>',lambda _:self.edit_redo())
-        #self.bind('<Control-v>',lambda _:self.clipboard_append)
 
     def show(self, line = None):
         w = self
