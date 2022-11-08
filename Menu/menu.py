@@ -2,10 +2,9 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import font
 from styles import menu as s
-from root import window
 
 class Menu(tk.Frame):
-    def __init__(self,root:window) -> None:
+    def __init__(self,root) -> None:
         tk.Frame.__init__(self,root,
         relief = tk.FLAT, border = 30,
         background=s['bg'])

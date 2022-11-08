@@ -1,5 +1,6 @@
 import tkinter as tk
 from styles import titlebar as s
+import Editor.dropdown as dropdown
 
 
 class titlebar(tk.Frame):
@@ -16,13 +17,10 @@ class titlebar(tk.Frame):
         text = ' N ', font = f"{s['font']} 16 bold")
         logo.pack(side=tk.LEFT)
 
-        fileMenu = tk.Menu(self)
-        fileMenu.add_command(label='Save',command=lambda:root.saveFile())
-        fileMenu.add_command(label='CLose File',command=lambda:root.closeFile())
-        _mButton(self,'File',fileMenu)
+        _mButton(self,'File',dropdown.fileDrop(self,root))
+        _mButton(self,'Edit',dropdown.editDrop(self,root))
 
         
-
         # title label
         self.title = tk.Label(
         self,text = file, 
@@ -73,3 +71,4 @@ class _mButton(_Button):
     def onLeave(self):
         super().onLeave()
         self.configure(foreground=s['fgfade'])
+
