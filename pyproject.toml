@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "neuron"
+version = "0.1.0"
+description = "A markdown text editor"
+authors = ["pardun"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
