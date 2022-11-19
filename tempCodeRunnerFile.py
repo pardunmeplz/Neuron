@@ -1,1 +1,0 @@
-editor.bind('<Control-s>',lambda _:self.saveFile())

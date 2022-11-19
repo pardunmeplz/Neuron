@@ -8,7 +8,13 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+markdown = "^3.4.1"
+types-markdown = "^3.4.2.1"
+pyqt5 = "^5.15.7"
 
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.991"
 
 [build-system]
 requires = ["poetry-core"]
