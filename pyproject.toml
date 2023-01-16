@@ -10,7 +10,7 @@ readme = "README.md"
 python = "^3.7"
 markdown = "^3.4.1"
 types-markdown = "^3.4.2.1"
-pyqt5 = "^5.15.7"
+pyqt6 = "^6.4.0"
 
 
 [tool.poetry.group.dev.dependencies]
